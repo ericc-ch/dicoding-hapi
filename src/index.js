@@ -1,20 +1,11 @@
-"use strict";
-
-const Hapi = require("@hapi/hapi");
+import { registerRoutesBooks } from "./routes/books.js"
+import { server } from "./server.js"
 
 const init = async () => {
-  const server = Hapi.server({
-    port: 3000,
-    host: "localhost",
-  });
+  registerRoutesBooks()
 
-  await server.start();
-  console.log("Server running on %s", server.info.uri);
-};
+  await server.start()
+  console.log(`Server berjalan pada ${server.info.uri}`)
+}
 
-process.on("unhandledRejection", (err) => {
-  console.log(err);
-  process.exit(1);
-});
-
-init();
+init()
